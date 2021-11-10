@@ -1,0 +1,55 @@
+{% extends "wrapper.html" %}
+
+{% block body %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <table bgcolor="#eea030" align="center" width="70%">
+        <tbody>
+        <tr bgcolor="#55aaea">
+            <td>
+                {{ question.text }}
+                <input type="hidden" name="question_id" value="{{ question.id }}">
+            </td>
+        </tr>
+        <tr bgcolor="#dddddd">
+            <td>
+                <br>
+            </td>
+        </tr>
+        {% if question.type == 1 %}
+        <tr>
+            <td>
+                <input type="text" name="answer">
+            </td>
+        </tr>
+        {% endif %}
+        {% if question.type == 3 %}
+        <tr>
+            <td>
+                Зажмите ctrl для выбора нескольких элементов
+            </td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td>
+                {% if question.type == 3 %}
+            <select name="answer" size="3" multiple>
+                {% elif question.type == 2 %}
+            <select name="answer" size="3">
+                {% endif %}
+                {% for answer in question.answers %}
+                <option value="{{ answer.num }}">{{ answer.text }}</option>
+                {% endfor %}
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="ОК" align="right" class="btn btn-success">
+            </td>
+        </tr>
+        </tbody>
+</table>
+</form>
+{% endblock %}

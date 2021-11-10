@@ -1,0 +1,22 @@
+{% extends "wrapper.html" %}
+
+{% block body %}
+<table bgcolor="#eea030" align="center" width="70%">
+    <tbody>
+    {% for asking in askings %}
+        <tr>
+            <td>
+                <h6><strong><a href="/asking_start/{{ asking.key }}">{{ asking.name }}</a></strong></h6>
+                {{ asking.start_date }} <br>
+                {{ asking.finish_date }}
+            </td>
+        </tr>
+    <tr bgcolor="#dddddd">
+        <td>
+            <br>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
